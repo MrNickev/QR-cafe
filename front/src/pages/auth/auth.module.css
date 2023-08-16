@@ -1,0 +1,43 @@
+.body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+}
+.logo{
+    position: absolute;
+    transform: translateY(-250px);
+}
+.form{
+    width: 300px;
+    background-color: #fff;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+}
+.form div:first-child{
+    font-size: 32px;
+    font-weight: 600;
+}
+.formItem{
+    width: 100%;
+    margin-top: 25px;
+}
+.formItem input{
+    width: 100%;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid rgba(198, 198, 198, 1);
+}
+.errorMsg{
+    color: red;
+}
+.authButton{
+    margin-top: 40px;
+    padding: 16px 32px;
+}
