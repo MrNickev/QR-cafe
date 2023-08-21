@@ -4,13 +4,15 @@ import React from "react";
 import Login from "./pages/auth/login";
 import Navbar from "./pages/navbar/navbar";
 import Layout from "./components/layout/layout";
+import Registration from "./pages/auth/registration";
 
 function App() {
   return (
     <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            <Route path="/sign-in" element={<Login />} />
+            <Route path="/sign-up" element={<Registration />} />
               <Route path="/layout" element={<Layout />} >
                   <Route index element={<Navbar />} />
                   {/*<Route path="tables" element={<Tables />} />*/}

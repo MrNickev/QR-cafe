@@ -1,31 +1,28 @@
-package com.qrcafe.qrcafeback.Controllers;
+package com.qrcafe.qrcafeback.controllers;
 
-import com.qrcafe.qrcafeback.Services.AuthService;
-import com.qrcafe.qrcafeback.auth.AuthenticationRequest;
-import com.qrcafe.qrcafeback.auth.AuthenticationResponse;
-import com.qrcafe.qrcafeback.auth.RegisterRequest;
+import com.qrcafe.qrcafeback.dto.JwtRequest;
+import com.qrcafe.qrcafeback.dto.RegistartionUserDto;
+import com.qrcafe.qrcafeback.services.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
-
     private final AuthService authService;
 
-    @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(authService.register(request));
+    @PostMapping("/auth")
+    public ResponseEntity<?> createToken(@RequestBody JwtRequest authRequest) {
+        return authService.createToken(authRequest);
     }
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
-        return ResponseEntity.ok(authService.authenticate(request));
+    @PostMapping("/registration")
+    public ResponseEntity<?> createNewUser(@RequestBody RegistartionUserDto registartionUserDto) {
+        return authService.createNewUser(registartionUserDto);
+
     }
+
 }

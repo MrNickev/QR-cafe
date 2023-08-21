@@ -5,10 +5,12 @@ import Logo from "../../components/ui/logo/Logo";
 import React, {useState} from "react";
 import Button from "../../components/ui/button/button";
 import AuthService from "../../services/auth.service";
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
 
     const [errors, setErrors] = useState({'email' : null, 'password' : null})
+    const navigate = useNavigate();
     const onSubmit = async (e) => {
         e.preventDefault();
         let email = e.target.querySelector("#email").value
@@ -27,13 +29,15 @@ const Login = () => {
         }
 
         if (password && email) {
-            try {
-                let response = await AuthService.authLogin({email: email, password: password})
-                console.log(response)
-            } catch (e) {
-                console.error(e)
-                setErrors({email : null, password: e.message})
-            }
+
+            await AuthService.authLogin({email: email, password: password})
+                .then( () => {
+                    navigate('/layout')
+                })
+                .catch((e) => {
+                    console.log(e)
+                    setErrors(prevState => ({...prevState, password: e.message}))
+                })
 
         }
 
