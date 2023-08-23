@@ -1,7 +1,9 @@
 package com.qrcafe.qrcafeback.controllers;
 
 import com.qrcafe.qrcafeback.dto.JwtRequest;
-import com.qrcafe.qrcafeback.dto.RegistartionUserDto;
+import com.qrcafe.qrcafeback.dto.registration.RegistartionUserDto;
+import com.qrcafe.qrcafeback.dto.registration.RegistrationDecisionMakerDto;
+import com.qrcafe.qrcafeback.dto.registration.RegistrationManagerDto;
 import com.qrcafe.qrcafeback.services.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +22,22 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<?> createNewUser(@RequestBody RegistartionUserDto registartionUserDto) {
-        return authService.createNewUser(registartionUserDto);
+    public ResponseEntity<?> createUser(@RequestBody RegistartionUserDto dto) {
+        return authService.createNewUser(dto);
 
     }
+
+    @PostMapping("/registration/decisionMaker")
+    public ResponseEntity<?> createNewDecisionMaker(@RequestBody RegistrationDecisionMakerDto registartionUserDto) {
+        return authService.createNewUser(registartionUserDto);
+    }
+
+    @PostMapping("/registration/manager")
+    public ResponseEntity<?> createNewManager(@RequestBody RegistrationManagerDto registartionUserDto) {
+        return authService.createNewUser(registartionUserDto);
+    }
+
+
+
 
 }
