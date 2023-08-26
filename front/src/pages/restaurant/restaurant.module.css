@@ -1,0 +1,10 @@
+.headerWithButton {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+}

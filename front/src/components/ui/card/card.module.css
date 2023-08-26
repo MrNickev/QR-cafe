@@ -1,0 +1,12 @@
+.card {
+    background-color: white;
+    border-radius: 22px;
+    padding: 2%;
+    margin-top: 20px;
+}
+
+.card div:first-child {
+    margin-bottom: 7px;
+    font-weight: bolder;
+    font-size: 25px;
+}

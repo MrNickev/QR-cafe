@@ -1,0 +1,32 @@
+.heading {
+    font-weight: bolder;
+    font-size: 25px;
+}
+.heading :nth-child(2){
+    position: relative;
+    transform: translateY(6px);
+    color: black;
+}
+
+.decorated {
+    color: #ff9201;
+}
+
+.headingItem {
+    margin: 5px 0;
+}
+
+.chart {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.axis {
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.note {
+    font-size: smaller;
+    text-align: center;
+}
