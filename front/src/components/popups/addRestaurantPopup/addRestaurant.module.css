@@ -1,0 +1,46 @@
+.frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: rgba(61,61,61,0.4);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.addRestaurantForm{
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 45px 30px;
+}
+.formTitle{
+    font-size: 32px;
+    font-weight: 600;
+}
+.formItem{
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+.formItem input{
+    height: 30px;
+    font-size: 18px;
+    margin-top: 5px;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid rgba(165, 165, 165, 1);
+}
+.addButton{
+    display: block;
+    margin-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.errorMsg{
+    color: red;
+    font-weight: 400;
+}

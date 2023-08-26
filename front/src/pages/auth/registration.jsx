@@ -1,10 +1,9 @@
 // @ts-ignore
 import styles from './auth.module.css'
 import Logo from "../../components/ui/logo/Logo";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Button from "../../components/ui/button/button";
 import AuthService from "../../services/auth.service";
-import Cookies from 'universal-cookie';
 import {useNavigate} from "react-router-dom";
 
 const Registration = () => {
@@ -22,11 +21,19 @@ const Registration = () => {
         let firstName = e.target.querySelector("#firstName").value
         let lastName = e.target.querySelector("#lastName").value
         let middleName = e.target.querySelector("#middleName").value
+        let inn = e.target.querySelector("#inn").value
+        let username = e.target.querySelector("#username").value
+
 
         if (!email) {
             setErrors(prevState => ({...prevState, "email": true}))
             return
         }
+
+        if(!username || username.length < 4) {
+            setErrors(prevState => ({...prevState, "username": "Логин не может быть меньше 4 символов"}))
+        }
+
         if (!password) {
             setErrors(prevState => ({...prevState, "password": "Введите пароль"}))
             return
@@ -41,17 +48,23 @@ const Registration = () => {
             return
         }
 
+        if (!inn) {
+            setErrors(prevState => ({...prevState, inn: "Неверный ИНН"}))
+        }
+
         if (firstName && middleName && lastName && email && password && password === repeatPassword) {
-            await AuthService.register(
+            console.log('registration request sending...')
+            await AuthService.registerDm(
                 {
                     email: email,
                     password: password,
                     firstName: firstName,
                     middleName : middleName,
                     lastName : lastName,
-                    role: "DecisionMaker"
+                    inn : inn,
+                    username : username
                 })
-                .then(() => {
+                .then((response) => {
                         navigate('/layout')
                     }
                 )
@@ -59,7 +72,6 @@ const Registration = () => {
                     console.log(e)
                     setErrors(prevState => ({...prevState, repeatPassword: e.message}))
                 })
-
         }
     }
 
@@ -78,11 +90,22 @@ const Registration = () => {
                     <input  placeholder={'Отчество'} required={true} type='text' id="middleName" />
                 </div>
                 <div className={styles.formItem}>
-
                     <input required={true} placeholder={'Почта'} type="email" id="email"  onChange={() => {
                         if (errors.email) setErrors(prevState => ({...prevState, email: null}))}
                     } className={styles.input}/>
                     {errors.email && <span className={styles.errorMsg}>{errors.email}</span>}
+                </div>
+                <div className={styles.formItem}>
+                    <input required={true} placeholder={'Логин'} type="text" id="username"  onChange={() => {
+                        if (errors.username) setErrors(prevState => ({...prevState, username: null}))}
+                    } className={styles.input}/>
+                    {errors.username && <span className={styles.errorMsg}>{errors.username}</span>}
+                </div>
+                <div className={styles.formItem}>
+                    <input required={true} placeholder={'ИНН'} type="text" id="inn"  onChange={() => {
+                        if (errors.inn) setErrors(prevState => ({...prevState, inn: null}))}
+                    } className={styles.input}/>
+                    {errors.inn && <span className={styles.errorMsg}>{errors.inn}</span>}
                 </div>
                 <div className={styles.formItem}>
                     <input  placeholder={'Пароль'} type='password' id="password" onChange={() => {

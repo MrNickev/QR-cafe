@@ -13,10 +13,10 @@ const Login = () => {
     const navigate = useNavigate();
     const onSubmit = async (e) => {
         e.preventDefault();
-        let email = e.target.querySelector("#email").value
+        let username = e.target.querySelector("#username").value
         let password = e.target.querySelector("#password").value
-        if (!email) {
-            setErrors(prevState => ({...prevState, "email": true}))
+        if (!username || username.length < 4) {
+            setErrors(prevState => ({...prevState, username: "Неверный логин"}))
             return
         }
         if (!password) {
@@ -28,9 +28,12 @@ const Login = () => {
             return
         }
 
-        if (password && email) {
+        if (password && username) {
 
-            await AuthService.authLogin({email: email, password: password})
+            await AuthService.authLogin({
+                email: username,
+                password: password
+            })
                 .then( () => {
                     navigate('/layout')
                 })
@@ -50,10 +53,10 @@ const Login = () => {
                 <div>Вход</div>
                 <div className={styles.formItem}>
 
-                    <input required={true} placeholder={'Почта'} type="email" id="email"  onChange={() => {
-                        if (errors.email) setErrors(prevState => ({...prevState, email: null}))}
+                    <input required={true} placeholder={'Логин'} type="text" id="username"  onChange={() => {
+                        if (errors.username) setErrors(prevState => ({...prevState, username: null}))}
                     } className={styles.input}/>
-                    {errors.email && <span className={styles.errorMsg}>{errors.email}</span>}
+                    {errors.username && <span className={styles.errorMsg}>{errors.username}</span>}
                 </div>
                 <div className={styles.formItem}>
                     <input  placeholder={'Пароль'} type='password' id="password" onChange={() => {

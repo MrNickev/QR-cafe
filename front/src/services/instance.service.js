@@ -7,16 +7,28 @@ export const baseURL_server = " http://localhost:8080/api"
 export const cookies = new Cookies();
 export let instance : axios;
 export const updateInstance = () => {
-    if (cookies.get('token') && cookies.get('role'))
+    if (cookies.get('token') && cookies.get('roles')) {
         instance = axios.create({
             baseURL: baseURL_server,
-            headers: {Authorization: 'Bearer' + cookies.get('token')},
+            headers: {
+                Authorization: 'Bearer ' + cookies.get('token'),
+                'Content-Type': 'application/json',
+                // 'Access-Control-Allow-Origin': "http://localhost:8080"
+            },
+
         });
-    else
+        console.log('instance now WITH headers');
+    }
+    else {
         instance = axios.create({
             baseURL: baseURL_server,
-            headers: {},
+            headers: {
+                // 'Access-Control-Allow-Origin': "http://localhost:8080",
+                // 'Content-Type': 'application/json',
+            },
         })
+        console.log('instance now WITHOUT headers');
+    }
 }
 
 updateInstance()

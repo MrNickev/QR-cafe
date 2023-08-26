@@ -1,0 +1,32 @@
+.navItem{
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    height: 250px;
+    background-color: #FF9E2D;
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 40px;
+    color: white;
+    text-decoration: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.navItem:nth-child(1){
+    background-image: url('../../assets/svg/table-model.svg');
+    /*background-position: center -30px;*/
+}
+
+.navItem:nth-child(2){
+    background-image: url('../../assets/svg/menu.svg');
+    /*background-position: 30px -30px;*/
+}
+
+.navItem:nth-child(3){
+    background-image: url('../../assets/svg/payment.svg');
+    background-position: 130px 60px;
+    background-size: auto;
+
+}

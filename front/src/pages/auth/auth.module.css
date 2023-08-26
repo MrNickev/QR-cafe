@@ -7,8 +7,9 @@
     background-color: #f2f2f2;
 }
 .logo{
-    position: absolute;
-    transform: translateY(-250px);
+    /*position: absolute;*/
+    /*transform: translateY(-250px);*/
+    margin-bottom: 5%;
 }
 .form{
     width: 300px;

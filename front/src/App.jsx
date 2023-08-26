@@ -5,6 +5,8 @@ import Login from "./pages/auth/login";
 import Navbar from "./pages/navbar/navbar";
 import Layout from "./components/layout/layout";
 import Registration from "./pages/auth/registration";
+import Restaurants from "./pages/decision-maker/restaurants/restaurants";
+import Restaurant from "./pages/restaurant/restaurant";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
             <Route path="/sign-up" element={<Registration />} />
               <Route path="/layout" element={<Layout />} >
                   <Route index element={<Navbar />} />
+                  <Route path="restaurants" element={<Restaurants />} />
+                  <Route path="restaurants/:id" element={<Restaurant />} />
                   {/*<Route path="tables" element={<Tables />} />*/}
                   {/*<Route path="waiters" element={<Waiters />} />*/}
                   {/*<Route path="menu" element={<Menu />} />*/}
