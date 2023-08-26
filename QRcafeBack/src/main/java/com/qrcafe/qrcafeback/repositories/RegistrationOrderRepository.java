@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface RegistrationOrderRepository extends CrudRepository<RegistrationOrder, UUID> {
-    Optional<RegistrationOrder> findByUsername(String username);
+public interface RegistrationOrderRepository extends CrudRepository<RegistrationOrder, Long> {
+    Optional<RegistrationOrder> findByEmail(String email);
 
 }

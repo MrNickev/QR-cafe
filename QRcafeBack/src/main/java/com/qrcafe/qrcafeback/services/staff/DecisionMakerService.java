@@ -1,4 +1,4 @@
-package com.qrcafe.qrcafeback.services;
+package com.qrcafe.qrcafeback.services.staff;
 
 import com.qrcafe.qrcafeback.dto.registration.RegistrationDecisionMakerDto;
 import com.qrcafe.qrcafeback.entities.DecisionMaker;
@@ -7,6 +7,7 @@ import com.qrcafe.qrcafeback.enums.Role;
 import com.qrcafe.qrcafeback.enums.Status;
 import com.qrcafe.qrcafeback.repositories.DecisionMakerRepository;
 import com.qrcafe.qrcafeback.repositories.UserRepository;
+import com.qrcafe.qrcafeback.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,7 +25,7 @@ public class DecisionMakerService {
     private final UserService userService;
 
     public DecisionMaker createNewUser(RegistrationDecisionMakerDto registrationUserDto) {
-        var user = userService.createNewUser(registrationUserDto);
+        var user = userService.createNewUser(registrationUserDto, Role.DECISION_MAKER);
         DecisionMaker dm = new DecisionMaker();
         dm.setInn(registrationUserDto.getInn());
         dm.setUser(user);

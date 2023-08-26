@@ -1,9 +1,8 @@
 package com.qrcafe.qrcafeback.controllers;
 
 import com.qrcafe.qrcafeback.entities.Restaurant;
-import com.qrcafe.qrcafeback.services.DecisionMakerService;
+import com.qrcafe.qrcafeback.services.staff.DecisionMakerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

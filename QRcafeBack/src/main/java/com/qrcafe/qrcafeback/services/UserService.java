@@ -1,9 +1,8 @@
 package com.qrcafe.qrcafeback.services;
 
-import com.qrcafe.qrcafeback.dto.registration.RegistartionUserDto;
 import com.qrcafe.qrcafeback.dto.registration.RegistrationDecisionMakerDto;
 import com.qrcafe.qrcafeback.dto.registration.RegistrationManagerDto;
-import com.qrcafe.qrcafeback.entities.DecisionMaker;
+import com.qrcafe.qrcafeback.dto.registration.RegistrationUserDto;
 import com.qrcafe.qrcafeback.entities.User;
 import com.qrcafe.qrcafeback.enums.Role;
 import com.qrcafe.qrcafeback.enums.Status;
@@ -11,7 +10,6 @@ import com.qrcafe.qrcafeback.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,9 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -62,28 +58,24 @@ public class UserService implements UserDetailsService {
         user.setLastName(lastName);
         user.setRole(role);
         user.setPassword(passwordEncoder.encode(password));
-        user.setRole(Role.DECISION_MAKER);
         user.setStatus(Status.ACTIVE);
         return userRepository.save(user);
     }
 
-    public User createNewUser(RegistrationDecisionMakerDto registrationDecisionMakerDto) {
-        var user = createNewUser(
-                registrationDecisionMakerDto.getUsername(),
-                registrationDecisionMakerDto.getPassword(),
-                registrationDecisionMakerDto.getEmail(),
-                registrationDecisionMakerDto.getFirstName(),
-                registrationDecisionMakerDto.getMiddleName(),
-                registrationDecisionMakerDto.getLastName(),
-                Role.DECISION_MAKER
-        );
-        return user;
-    }
-
-    public void createNewUser(RegistrationManagerDto registrationManagerDto) {
-//        var manager = managerService.createNewUser(registrationManagerDto);
-//        createNewUser(
-//                manager.getId(),
+//    public User createNewUser(RegistrationDecisionMakerDto registrationDecisionMakerDto) {
+//        return createNewUser(
+//                registrationDecisionMakerDto.getUsername(),
+//                registrationDecisionMakerDto.getPassword(),
+//                registrationDecisionMakerDto.getEmail(),
+//                registrationDecisionMakerDto.getFirstName(),
+//                registrationDecisionMakerDto.getMiddleName(),
+//                registrationDecisionMakerDto.getLastName(),
+//                Role.DECISION_MAKER
+//        );
+//    }
+//
+//    public User createNewUser(RegistrationManagerDto registrationManagerDto) {
+//        return createNewUser(
 //                registrationManagerDto.getUsername(),
 //                registrationManagerDto.getPassword(),
 //                registrationManagerDto.getEmail(),
@@ -92,6 +84,19 @@ public class UserService implements UserDetailsService {
 //                registrationManagerDto.getLastName(),
 //                Role.MANAGER
 //        );
+//    }
+
+    public User createNewUser(RegistrationUserDto registrationManagerDto, Role role) {
+        return createNewUser(
+                registrationManagerDto.getUsername(),
+                registrationManagerDto.getPassword(),
+                registrationManagerDto.getEmail(),
+                registrationManagerDto.getFirstName(),
+                registrationManagerDto.getMiddleName(),
+                registrationManagerDto.getLastName(),
+                role
+        );
     }
+
 
 }

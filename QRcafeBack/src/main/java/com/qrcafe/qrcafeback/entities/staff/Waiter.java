@@ -1,5 +1,6 @@
-package com.qrcafe.qrcafeback.entities;
+package com.qrcafe.qrcafeback.entities.staff;
 
+import com.qrcafe.qrcafeback.entities.User;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -9,8 +10,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@DiscriminatorValue("WA")
-public class Waiter extends User{
-    @ManyToOne
-    private Restaurant restaurant;
+public class Waiter extends Staff {
+
 }

@@ -5,6 +5,5 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class RegistrationDecisionMakerDto extends RegistrationUserDto {
-    private String inn;
+public class RegistrationGeneralManagerDto extends RegistrationManagerDto{
 }

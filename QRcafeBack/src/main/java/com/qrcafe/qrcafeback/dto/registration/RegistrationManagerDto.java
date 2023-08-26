@@ -8,6 +8,6 @@ import java.util.UUID;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class RegistrationManagerDto extends RegistartionUserDto{
+public class RegistrationManagerDto extends RegistrationUserDto {
     private UUID restaurantId;
 }

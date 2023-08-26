@@ -1,6 +1,7 @@
 package com.qrcafe.qrcafeback.controllers;
 
 import com.qrcafe.qrcafeback.dto.CreatingRestaurantDto;
+import com.qrcafe.qrcafeback.dto.registration.RegistrationOrderDto;
 import com.qrcafe.qrcafeback.entities.Restaurant;
 import com.qrcafe.qrcafeback.services.RestaurantService;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +27,10 @@ public class RestaurantController {
         return restaurantService.createNewRestaurant(principal.getName(), restaurantDto);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<?> getInfo(Principal principal, @PathVariable("id") UUID id) {
+    public ResponseEntity<?> getInfo(@PathVariable("id") UUID id) {
         return ResponseEntity.ok(restaurantService.findById(id));
     }
+
+
 
 }

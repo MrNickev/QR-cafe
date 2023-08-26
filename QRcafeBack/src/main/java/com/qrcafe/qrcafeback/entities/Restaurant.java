@@ -1,10 +1,12 @@
 package com.qrcafe.qrcafeback.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.qrcafe.qrcafeback.entities.staff.GeneralManager;
+import com.qrcafe.qrcafeback.entities.staff.Manager;
+import com.qrcafe.qrcafeback.entities.staff.Waiter;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,14 +27,22 @@ public class Restaurant {
     private DecisionMaker decisionMaker;
 
     @OneToOne
-    private User generalManager;
+    private GeneralManager generalManager;
 
-    @OneToMany
-    private List<User> managers;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant", orphanRemoval = true)
+    private List<Manager> managers;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant", orphanRemoval = true)
     private List<Waiter> waiters;
 
 
+    public void addManager(Manager manager) {
+        managers.add(manager);
+        manager.setRestaurant(this);
+    }
 
+    public void setGeneralManager(GeneralManager generalManager) {
+        this.generalManager = generalManager;
+        generalManager.setRestaurant(this);
+    }
 }

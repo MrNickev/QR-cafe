@@ -7,5 +7,6 @@ public enum Role {
     DECISION_MAKER,
     GENERAL_MANAGER,
     MANAGER,
-    WAITER
+    WAITER,
+    CLIENT
 }
