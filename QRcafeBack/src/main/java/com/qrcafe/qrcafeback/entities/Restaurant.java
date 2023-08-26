@@ -7,6 +7,7 @@ import com.qrcafe.qrcafeback.entities.staff.Waiter;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,10 +31,10 @@ public class Restaurant {
     private GeneralManager generalManager;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant", orphanRemoval = true)
-    private List<Manager> managers;
+    private List<Manager> managers = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant", orphanRemoval = true)
-    private List<Waiter> waiters;
+    private List<Waiter> waiters = new ArrayList<>();
 
 
     public void addManager(Manager manager) {

@@ -1,5 +1,6 @@
 package com.qrcafe.qrcafeback.entities.staff;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.qrcafe.qrcafeback.entities.Restaurant;
 import com.qrcafe.qrcafeback.entities.User;
 import jakarta.persistence.*;
@@ -15,6 +16,7 @@ public class Staff {
     private UUID id;
 
     @ManyToOne
+    @JsonIgnore
     private Restaurant restaurant;
 
     @OneToOne
